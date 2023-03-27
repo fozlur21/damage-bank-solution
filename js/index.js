@@ -2,6 +2,7 @@ document.getElementById("btn-deposit").addEventListener("click", function () {
 
     const inputDeposit = document.getElementById("deposit-field");
     const inputDepositString = inputDeposit.value;
+    //console.log(inputDepositString);
     const inputDepositFloat = parseFloat(inputDepositString);
 
     //! validation
@@ -9,6 +10,13 @@ document.getElementById("btn-deposit").addEventListener("click", function () {
         alert("Please enter a valid number");
         return
     }
+
+    //! validation for only positive number
+    if (isNaN(inputDepositString) || inputDepositString <= 0) {
+        alert("Please enter a valid positive number");
+        return;
+    }
+
 
     const depositTotal = document.getElementById("deposit-total");
     const depositCalculatorFloat = inputDepositFloat;
@@ -34,12 +42,19 @@ document.getElementById("btn-withdraw").addEventListener("click", function () {
 
     const balance = parseFloat(document.getElementById("balance-total").innerText);
 
-    //! validation
+    //! validation for only number
     if (isNaN(amountString)) {
         alert("Please enter a valid number");
         return
     }
 
+    //! validation for only positive number
+    if (isNaN(amountString) || amountString <= 0) {
+        alert("Please enter a valid positive number");
+        return;
+    }
+
+    //! validation for only withdrawal amount
     if (amountFloat > balance) {
         alert("Sorry, insufficient amount!");
         return;
